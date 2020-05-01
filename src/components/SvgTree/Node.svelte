@@ -1,0 +1,57 @@
+<script>
+  export let node;
+  export let x = 20;
+  export let y = 20;
+
+  let hovered = false;
+
+  const centerOfBox = x + node.size / 2;
+
+  const getXPositions = () => {
+    const arr = [];
+    let xPos = x;
+    for (const cNode of node.nodes) {
+      arr.push(xPos);
+      xPos += cNode.size + 20;
+    }
+    return arr;
+  };
+
+  $: xPositions = node.nodes ? getXPositions() : [];
+</script>
+
+{#if node.name}
+  <g width={node.size} class:hovered>
+    <text 
+      x={x + node.size/2} {y}
+      on:mouseover={() => hovered = true}
+      on:mouseout={() => hovered = false}
+      text-anchor="middle">{node.name}</text>
+
+    {#if node.nodes}
+      <!-- making 2 separate loops so that all lines come before nodes. -->
+      <!-- Just for organization in the output -->
+      {#each node.nodes as cNode, i}
+        <line 
+          x1={x + node.size/2} 
+          y1={y + 10} 
+          x2={xPositions[i] + cNode.size/2} 
+          y2={y + 40} stroke="black" />
+      {/each}
+      {#each node.nodes as cNode, i}
+        <svelte:self 
+          node={cNode} 
+          x={xPositions[i]} 
+          y={y + 60} />
+      {/each}
+    {:else}
+      <line x1={x + node.size/2} y1={y + 10} x2={x + node.size/2} y2={y + 40} stroke="black" />
+      <text 
+        x={x + node.size/2} 
+        y={y + 60}
+        font="16px sans-serif"
+        text-anchor="middle"
+      >{node.sentence}</text>
+    {/if}
+  </g>
+{/if}
