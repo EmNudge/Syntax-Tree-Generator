@@ -1,5 +1,13 @@
 export default function addNodeSize(node) {
-  const nameLen = getTextSize(node.name);
+  // first lets give the name its length
+  let nameLen = 0;
+  for (const [index, name] of node.name.nameArr.entries()) {
+    if (index !== 0) nameLen += 2;
+    name.offset = nameLen;
+    nameLen += getTextSize(name.text, name.type === 'name' ? 16 : 12);
+  }
+  node.nameSize = nameLen;
+
   // if no children, just get the biggest text element
   if (!node.nodes) {
     node.size = Math.max(nameLen, getTextSize(node.sentence));
@@ -18,9 +26,10 @@ export default function addNodeSize(node) {
 }
 
 // adds to SVG to get text size
-function getTextSize(str) {
+function getTextSize(str, fontSize = 16) {
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute('font-size', `${fontSize}px`);
 
   svg.appendChild(text);
   text.textContent = str;

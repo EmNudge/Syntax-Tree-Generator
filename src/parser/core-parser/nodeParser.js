@@ -1,28 +1,22 @@
 import {
   char,
   many1,
-  letters,
   whitespace,
   optionalWhitespace,
   between,
-  anythingExcept,
   recursiveParser,
   coroutine,
   choice,
-  anyOfString
 } from "arcsecond";
-
-const sentenceParser = coroutine(function*() {
-  const nonBracket = anythingExcept(anyOfString("[]"));
-  const sentence = yield many1(nonBracket);
-  return sentence.join("");
-});
+import sentenceParser from './sentenceParser';
+import nameParser from './nameParser';
 
 const betweenBrackets = between(char("["))(char("]"));
 
-const endNode = betweenBrackets(
+export const endNode = betweenBrackets(
   coroutine(function*() {
-    const name = yield letters;
+    yield optionalWhitespace;
+    const name = yield nameParser;
     yield whitespace;
     const sentence = yield sentenceParser;
 
@@ -33,9 +27,10 @@ const endNode = betweenBrackets(
   })
 );
 
-const nodeOfNodes = betweenBrackets(
+export const nodeOfNodes = betweenBrackets(
   coroutine(function*() {
-    const name = yield letters;
+    yield optionalWhitespace;
+    const name = yield nameParser;
     yield optionalWhitespace;
 
     const nodes = yield many1(
@@ -56,7 +51,3 @@ const nodeOfNodes = betweenBrackets(
     };
   })
 );
-
-const syntaxParser = choice([nodeOfNodes, endNode]);
-
-export default syntaxParser;

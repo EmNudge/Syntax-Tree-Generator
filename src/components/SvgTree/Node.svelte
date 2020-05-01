@@ -22,11 +22,21 @@
 
 {#if node.name}
   <g width={node.size} class:hovered>
-    <text 
-      x={x + node.size/2} {y}
-      on:mouseover={() => hovered = true}
-      on:mouseout={() => hovered = false}
-      text-anchor="middle">{node.name}</text>
+    <!-- text container -->
+    <g>
+      {#each node.name.nameArr as { type, text, offset }}
+       <text 
+          x={x + node.size/2 + offset - node.nameSize/2} 
+          y={type === 'name' ? y : y + 3}
+          on:mouseover={() => hovered = true}
+          on:mouseout={() => hovered = false}
+          text-anchor="left"
+          font-size="{type === 'name' ? 16 : 12}px">
+          {text}
+        </text>
+      {/each}
+    </g>
+   
 
     {#if node.nodes}
       <!-- making 2 separate loops so that all lines come before nodes. -->
