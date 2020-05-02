@@ -5,17 +5,21 @@
 
   export let treeLength = 6;
 
-  let x = 0;
-  let y = 0;
+  $: x = getXPos($svgStore, $treeStore);
+  let y = 40;
 
   let showNode = false;
 
   onMount(() => {
-    const { width } = $svgStore.getBoundingClientRect();
-    x = (width - $treeStore.size) / 2;
     y = 40;
     showNode = true;
   });
+
+  function getXPos(svg, tree) {
+    if (!svg) return 0;
+    const { width } = svg.getBoundingClientRect();
+    return (width - tree.size) / 2;
+  }
 </script>
 
 <svg

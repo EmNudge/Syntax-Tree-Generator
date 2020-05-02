@@ -7,12 +7,12 @@
   let spanEl;
   let anchor = { x: 0, y: 0 };
   onMount(() => {
-    const { x, y, bottom, right } = spanEl.getBoundingClientRect();
+    const { x, y, bottom, right, top, height } = spanEl.getBoundingClientRect();
     if (root) {
       anchor = { x, y: bottom };
       return;
     }
-    anchor = { x: right, y: 0 };
+    anchor = { x: right - x, y: top - height };
   });
 </script>
 

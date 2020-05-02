@@ -15,6 +15,8 @@
     font-family: sans-serif;
     text-align: center;
     height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
   }
   .box {
     text-align: left;
@@ -29,7 +31,6 @@
   .content {
     display: grid;
     grid-template-columns: auto 1fr;
-    height: 100%;
   }
 </style>
 

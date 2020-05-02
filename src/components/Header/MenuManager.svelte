@@ -4,6 +4,7 @@
   import { svgStore } from '../../stores/data';
   import { downloadPNG, downloadSVG } from '../../utils/download';
   import { importProject, exportProject } from '../../utils/exportImport';
+  import { setExample } from '../../utils/examples'
 
   export let menu = [
     { name: 'File', children: [
@@ -15,7 +16,11 @@
       { name: 'import', action: importProject },
     ]},
     { name: 'Graph', children: [
-      { name: 'Preferences', action: () => $enablePreferencesStore = !$enablePreferencesStore  }
+      { name: 'Preferences', action: () => $enablePreferencesStore = !$enablePreferencesStore  },
+      { name: 'Examples', children: [
+        { name: 'Unindented', action: () => setExample(0) },
+        { name: 'Basic', action: () => setExample(1) },
+      ]}
     ]}
   ];
 
