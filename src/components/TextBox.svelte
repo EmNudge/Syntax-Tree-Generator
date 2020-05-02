@@ -4,6 +4,7 @@
   import parser from '../parser';
   import SvgTree from "./SvgTree/Root.svelte";
   import { tick } from 'svelte';
+  import { replaceSelection, getSelection, deleteLast } from '../utils/selection';
 
   $: {
     $errTextStore = parser.run($textStore).error || "";
@@ -16,16 +17,16 @@
 
   async function handleMouseDown(e) {
     if (e.key !== 'Tab') return
-
     e.preventDefault();
-    const startIndex = e.target.selectionStart;
 
-    const start = $textStore.slice(0, e.target.selectionStart);
-    const end = $textStore.slice(e.target.selectionEnd);
-    $textStore = `${start}  ${end}`;
+    if (e.shiftKey) {
+      if (getSelection(e.target).length) return;
+      if (getSelection(e.target, -2) !== '  ') return;
+      deleteLast(e.target, 2);
+      return;
+    }
 
-    await tick();
-    e.target.setSelectionRange(startIndex+2,startIndex+2);
+    replaceSelection(e.target, '  ');
   }
 </script>
 
