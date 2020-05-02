@@ -1,7 +1,7 @@
 <script>
   import Node from "./Node.svelte";
   import { onMount } from "svelte";
-  import { treeStore, svgStore } from "../../stores";
+  import { treeStore, svgStore } from "../../stores/data";
 
   export let treeLength = 6;
 

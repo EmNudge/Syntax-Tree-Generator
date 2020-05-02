@@ -1,10 +1,12 @@
 import { get } from 'svelte/store'
-import { textStore } from '../stores'
+import { textStore } from '../stores/data'
+import { alignTextBottomStore } from '../stores/preferences'
 import { downloadItem } from './download';
 
 export function exportProject() {
   const text = get(textStore);
-  const preferences = {}
+  const alignTextBottom = get(alignTextBottomStore);
+  const preferences = { alignTextBottom }
   const obj = { text, preferences }
 
   const link = `data:text/plain;charset=utf-8,${encodeURIComponent(JSON.stringify(obj))}`
@@ -17,6 +19,7 @@ function setData(e) {
     try {
       const json = JSON.parse(text);
       textStore.set(json.text);
+      alignTextBottomStore.set(json.preferences.alignTextBottom);
     } catch (e) {
       console.log(e)
     }

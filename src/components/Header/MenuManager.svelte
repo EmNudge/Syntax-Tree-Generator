@@ -1,8 +1,9 @@
 <script>
   import MenuItem from './MenuItem.svelte';
-  import { activeMenu, svgStore } from '../../stores'
-  import { downloadPNG, downloadSVG } from '../../utils/download'
-  import { importProject, exportProject } from '../../utils/exportImport'
+  import { enablePreferencesStore, activeMenu } from '../../stores';
+  import { svgStore } from '../../stores/data';
+  import { downloadPNG, downloadSVG } from '../../utils/download';
+  import { importProject, exportProject } from '../../utils/exportImport';
 
   export let menu = [
     { name: 'File', children: [
@@ -14,7 +15,7 @@
       { name: 'import', action: importProject },
     ]},
     { name: 'Graph', children: [
-      { name: 'Preferences', action: () => console.log('preferences') }
+      { name: 'Preferences', action: () => $enablePreferencesStore = !$enablePreferencesStore  }
     ]}
   ];
 

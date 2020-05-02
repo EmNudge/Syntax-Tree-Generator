@@ -1,8 +1,8 @@
 <script>
-  import { treeStore, errTextStore, textStore } from '../stores';
+  import { treeStore, errTextStore, textStore } from '../stores/data';
   import addNodeSize from "../parser/addNodeSize";
-  import SvgTree from "./SvgTree/Root.svelte";
   import parser from '../parser';
+  import SvgTree from "./SvgTree/Root.svelte";
 
   $: {
     $errTextStore = parser.run($textStore).error || "";
