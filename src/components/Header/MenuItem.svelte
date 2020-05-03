@@ -18,6 +18,7 @@
 
 <style>
   .menu {
+    width: max-content;
     display: flex;
     flex-direction: column;
     position: absolute;

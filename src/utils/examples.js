@@ -1,8 +1,10 @@
 import { textStore } from '../stores/data'
 
 export const examples = [
-  `[S [NP This][VP [V creates][NP nice syntax trees]]]`,
-  `
+  { name: 'Basic', text: `[S [NP This][VP [V creates][NP nice syntax trees]]]` },
+  { 
+    name: 'Indented', 
+    text:  `
 [S 
   [NP 
     [D The]
@@ -16,10 +18,24 @@ export const examples = [
     ]
   ]
 ]
-  `.trim(),
-
+  `.trim() 
+  },
+  {
+    name: 'Long Names',
+    text: `
+[S
+  ["First Part" Hello]
+  ["Second Part" My Friend]
 ]
-
-export function setExample(num) {
-  textStore.set(examples[num]);
-}
+    `.trim()
+  },
+  {
+    name: 'Subscripts',
+    text: `
+[S
+  [NP(1) Hello]
+  ["Longer(2) Thing(3)" My Friend]
+]
+    `.trim()
+  },
+]

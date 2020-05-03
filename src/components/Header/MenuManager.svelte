@@ -1,11 +1,12 @@
 <script>
   import MenuItem from './MenuItem.svelte';
   import { enablePreferencesStore, activeMenu } from '../../stores';
-  import { svgStore } from '../../stores/data';
+  import { svgStore, textStore } from '../../stores/data';
   import { downloadPNG, downloadSVG } from '../../utils/download';
   import { importProject, exportProject } from '../../utils/exportImport';
-  import { setExample } from '../../utils/examples'
+  import { examples } from '../../utils/examples'
 
+  const examplesChildren = examples.map(({ name, text }) => ({ name, action: () => textStore.set(text) }))
   export let menu = [
     { name: 'File', children: [
       { name: 'Download As', children: [
@@ -17,10 +18,7 @@
     ]},
     { name: 'Graph', children: [
       { name: 'Preferences', action: () => $enablePreferencesStore = !$enablePreferencesStore  },
-      { name: 'Examples', children: [
-        { name: 'Unindented', action: () => setExample(0) },
-        { name: 'Basic', action: () => setExample(1) },
-      ]}
+      { name: 'Examples', children: examplesChildren }
     ]}
   ];
 
