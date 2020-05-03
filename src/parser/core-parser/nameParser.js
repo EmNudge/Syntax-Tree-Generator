@@ -16,7 +16,7 @@ const validNameParser = many1(choice([letter, digit, anyOfString(':-')])).map(na
 // this should only be used when inside quotes or spaces to avoid it consuming spaces it shouldn't
 const nameAndSpace = many1(choice([validNameParser, char(' ')])).map(text => text.join(''));
 
-const quoteNameParser = nameAndSpace.map(text => ({ name: 'name', text }));
+const quoteNameParser = nameAndSpace.map(text => ({ type: 'name', text }));
 
 const betweenParens = between(char('('))(char(')'));
 const subscriptParser = betweenParens(nameAndSpace).map(text => ({ type: 'subscript', text }));
