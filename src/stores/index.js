@@ -7,6 +7,4 @@ export const activeMenu = writable(null);
 
 export const svgStore = writable(null);
 
-export const textStore = writable('[S [NP This][VP [V creates][NP nice syntax trees]]]');
-
 export const enablePreferencesStore = writable(false);
