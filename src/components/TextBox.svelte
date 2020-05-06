@@ -1,20 +1,23 @@
 <script>
-  import { treeStore, errTextStore, textStore } from '../stores/data';
+  import { treeStore, treeDepthStore, errTextStore, textStore } from '../stores/data';
   import addNodeSize from "../parser/addNodeSize";
   import parser from '../parser';
   import SvgTree from "./SvgTree/Root.svelte";
   import { tick } from 'svelte';
   import { replaceSelection, getSelection, deleteLast } from '../utils/selection';
 
-  $: {
+  textStore.subscribe(text => {
     const parserResult = parser.run($textStore);
-    $errTextStore = parserResult.error || "";
+    errTextStore.set(parserResult.error || "");
     const result = parserResult.result || {};
-    if (result.name) {
-      addNodeSize(result);
-      $treeStore = result;
-    }
-  }
+    
+    if (!result.name) return;
+    
+    treeDepthStore.set(0);
+    console.log('set to 0')
+    addNodeSize(result);
+    treeStore.set(result);
+  });
 
   async function handleMouseDown(e) {
     if (e.key !== 'Tab') return

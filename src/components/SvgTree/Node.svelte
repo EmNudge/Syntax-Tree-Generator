@@ -6,14 +6,15 @@
 
   import { treeDepthStore } from '../../stores/data';
   import { alignTextBottomStore } from '../../stores/preferences';
-  if (depth > $treeDepthStore) $treeDepthStore = depth;
+  // needs to be reactive or it won't always be reassesed with new trees.
+  $: if (depth > $treeDepthStore)  $treeDepthStore = depth;
 
-  const getTextPos = alignBottom => {
-    const multiplier = alignBottom ? $treeDepthStore - depth + 1 : 1;
+  const getTextPos = (alignBottom, treeDepth) => {
+    const multiplier = alignBottom ? treeDepth - depth + 1 : 1;
     return y + 60 * multiplier;
   };
 
-  $: textPosition = getTextPos($alignTextBottomStore);
+  $: textPosition = getTextPos($alignTextBottomStore, $treeDepthStore);
 
   let hovered = false;
 

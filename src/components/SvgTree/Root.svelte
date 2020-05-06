@@ -11,7 +11,7 @@
 
 <svg
   bind:this={$svgStore}
-  height={treeLength * 100}
+  height={(treeLength + 1) * 80}
   width={$treeStore.size * 1.5 || 300}>
   <style>
     .hovered line {
