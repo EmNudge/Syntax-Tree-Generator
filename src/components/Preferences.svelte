@@ -3,7 +3,8 @@
     alignTextBottomStore,
     fontFamilyStore,
     fontSizeStore,
-    textTrianglesStore
+    textTrianglesStore,
+    autoCloseBracketsStore
   } from "../stores/preferences";
 </script>
 
@@ -11,6 +12,10 @@
   div.body {
     padding: 20px;
     background: #eee;
+  }
+  h3 {
+    margin-top: 50px;
+    text-align: left;
   }
   label.checkbox {
     text-align: left;
@@ -29,15 +34,20 @@
 <div class="body">
   <h2>Preferences</h2>
   
-  <div>
-    <label class="checkbox">
-      <input type="checkbox" bind:checked={$alignTextBottomStore} />
-      <span>Align Text To Bottom</span>
-    </label>
-    <br>
-    <label class="checkbox">
-      <input id="text-triangles" type="checkbox" bind:checked={$textTrianglesStore} />
-      <span for="text-triangles">Text Triangles</span>
-    </label>
-  </div>
+  <h3>Graph</h3>
+  <label class="checkbox">
+    <input type="checkbox" bind:checked={$alignTextBottomStore} />
+    <span>Align Text To Bottom</span>
+  </label>
+  <br>
+  <label class="checkbox">
+    <input type="checkbox" bind:checked={$textTrianglesStore} />
+    <span>Text Triangles</span>
+  </label>
+
+  <h3>Text Box</h3>
+  <label class="checkbox">
+    <input type="checkbox" bind:checked={$autoCloseBracketsStore} />
+    <span>Auto-Close Brackets</span>
+  </label>
 </div>

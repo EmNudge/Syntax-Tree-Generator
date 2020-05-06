@@ -1,6 +1,6 @@
 import { tick } from 'svelte';
 import { get } from 'svelte/store';
-import { textStore } from '../stores/data';
+import { textStore } from '../../stores/data';
 
 export function replaceSelection(textBox, textToAdd) {
   const startIndex = textBox.selectionStart;
@@ -36,4 +36,11 @@ export function getSelection(textBox, distance) {
 export function deleteLast(textBox, dist) {
   textBox.setSelectionRange(textBox.selectionStart - Math.abs(dist), textBox.selectionStart);
   tick().then(() => replaceSelection(textBox, ''));
+}
+
+export function moveSelection(textBox, dist) {
+  textBox.setSelectionRange(
+    textBox.selectionStart + dist, 
+    textBox.selectionEnd + dist,
+  ); 
 }

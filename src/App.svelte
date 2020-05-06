@@ -1,5 +1,5 @@
 <script>
-  import TextBox from './components/TextBox.svelte'
+  import TextBox from './components/TextBox/TextBox.svelte'
   import SvgTree from "./components/SvgTree/Root.svelte";
   import { errTextStore }  from './stores'
   import Header from './components/Header/MenuManager.svelte';
