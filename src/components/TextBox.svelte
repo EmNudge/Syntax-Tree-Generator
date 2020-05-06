@@ -7,8 +7,9 @@
   import { replaceSelection, getSelection, deleteLast } from '../utils/selection';
 
   $: {
-    $errTextStore = parser.run($textStore).error || "";
-    const result = parser.run($textStore).result || {};
+    const parserResult = parser.run($textStore);
+    $errTextStore = parserResult.error || "";
+    const result = parserResult.result || {};
     if (result.name) {
       addNodeSize(result);
       $treeStore = result;

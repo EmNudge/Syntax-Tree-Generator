@@ -1,30 +1,17 @@
 <script>
   import Node from "./Node.svelte";
   import { onMount } from "svelte";
-  import { treeStore, svgStore } from "../../stores/data";
+  import { treeStore, svgStore, treeDepthStore } from "../../stores/data";
 
-  export let treeLength = 6;
+  $: treeLength = $treeDepthStore;
 
-  $: x = getXPos($svgStore, $treeStore);
-  let y = 40;
-
-  let showNode = false;
-
-  onMount(() => {
-    y = 40;
-    showNode = true;
-  });
-
-  function getXPos(svg, tree) {
-    if (!svg) return 0;
-    const { width } = svg.getBoundingClientRect();
-    return (width - tree.size) / 2;
-  }
+  $: x = ($treeStore.size * 1.5 - $treeStore.size) / 2;
+  const y = 15;
 </script>
 
 <svg
   bind:this={$svgStore}
-  height={treeLength * 50}
+  height={treeLength * 100}
   width={$treeStore.size * 1.5 || 300}>
   <style>
     .hovered line {
@@ -34,7 +21,6 @@
       fill: red;
     }
   </style>
-  {#if showNode}
-    <Node node={$treeStore} {x} {y} />
-  {/if}
+
+  <Node node={$treeStore} {x} {y} />
 </svg>

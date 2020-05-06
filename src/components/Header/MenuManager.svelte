@@ -1,26 +1,8 @@
 <script>
   import MenuItem from './MenuItem.svelte';
   import { enablePreferencesStore, activeMenu } from '../../stores';
-  import { svgStore, textStore } from '../../stores/data';
-  import { downloadPNG, downloadSVG } from '../../utils/download';
-  import { importProject, exportProject } from '../../utils/exportImport';
-  import { examples } from '../../utils/examples'
-
-  const examplesChildren = examples.map(({ name, text }) => ({ name, action: () => textStore.set(text) }))
-  export let menu = [
-    { name: 'File', children: [
-      { name: 'Download As', children: [
-        { name: 'SVG', action: () => downloadSVG($svgStore) },
-        { name: 'PNG', action: () => downloadPNG($svgStore) },
-      ]},
-      { name: 'export', action: exportProject },
-      { name: 'import', action: importProject },
-    ]},
-    { name: 'Graph', children: [
-      { name: 'Preferences', action: () => $enablePreferencesStore = !$enablePreferencesStore  },
-      { name: 'Examples', children: examplesChildren }
-    ]}
-  ];
+  import { svgStore } from '../../stores/data';
+  import menu from './menu';
 
   let headerFocused = false;
   let headerEl;
