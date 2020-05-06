@@ -1,3 +1,5 @@
+const PADDING = 20;
+
 export default function addNodeSize(node) {
   // first lets give the name its length
   let nameLen = 0;
@@ -20,6 +22,9 @@ export default function addNodeSize(node) {
     const cNodeSize = addNodeSize(cNode);
     totalChildrenSize += cNodeSize;
   }
+  // adding the padding which gets added in the application
+  totalChildrenSize += (node.nodes.length - 1) * PADDING;
+
   // since children and node take up 2 different rows, we compare
   node.size = Math.max(totalChildrenSize, nameLen);
   return node.size;
