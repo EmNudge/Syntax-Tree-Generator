@@ -1,6 +1,6 @@
 <script>
   import MenuItem from './MenuItem.svelte';
-  import { enablePreferencesStore, activeMenu } from '../../stores';
+  import { activeMenu } from '../../stores';
   import { svgStore } from '../../stores/data';
   import menu from './menu';
 
