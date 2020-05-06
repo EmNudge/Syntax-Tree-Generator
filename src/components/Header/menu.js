@@ -25,6 +25,10 @@ const menu = [
   { name: 'Graph', children: [
     { name: 'Preferences', action: () => enablePreferencesStore.update(bool => !bool) },
     { name: 'Examples', children: examplesChildren }
+  ]},
+  { name: 'About', children: [
+    { name: 'File An Issue', action: () => window.open('https://github.com/EmNudge/Syntax-Tree-Generator/issues/new') },
+    { name: 'About Creator', action: () => window.open('https://kipperman.co') },
   ]}
 ];
 
