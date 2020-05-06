@@ -69,24 +69,11 @@
       {/each}
     {:else}
         {#if $textTrianglesStore && node.sentence.includes(' ')}
-          <line 
-            x1={x + node.size/2} 
-            y1={y + 10}
-            y2={textPosition - 20}
-            x2={x + node.size/2 - node.sentenceSize/2}
-            stroke="black" />
-          <line 
-            x1={x + node.size/2} 
-            y1={y + 10}
-            x2={x + node.size/2 + node.sentenceSize/2}
-            y2={textPosition - 20} 
-            stroke="black" />
-          <line 
-            x1={x + node.size/2 - node.sentenceSize/2} 
-            y1={textPosition - 20}
-            x2={x + node.size/2 + node.sentenceSize/2}
-            y2={textPosition - 20} 
-            stroke="black" />
+          <polygon points={`
+            ${x + node.size/2},${y + 10} 
+            ${x + node.size/2 - node.sentenceSize/2},${textPosition - 20}
+            ${x + node.size/2 + node.sentenceSize/2},${textPosition - 20}
+            `} stroke="black" fill="none" />
         {:else}
           <line 
             x1={x + node.size/2} 

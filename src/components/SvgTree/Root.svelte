@@ -14,7 +14,7 @@
   height={(treeLength + 1) * 80}
   width={$treeStore.size * 1.5 || 300}>
   <style>
-    .hovered line {
+    .hovered line, .hovered polygon {
       stroke: red;
     }
     .hovered text {
