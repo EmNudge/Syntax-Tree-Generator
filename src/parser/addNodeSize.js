@@ -12,7 +12,8 @@ export default function addNodeSize(node) {
 
   // if no children, just get the biggest text element
   if (!node.nodes) {
-    node.size = Math.max(nameLen, getTextSize(node.sentence));
+    node.sentenceSize = getTextSize(node.sentence);
+    node.size = Math.max(nameLen, node.sentenceSize);
     return node.size;
   }
 

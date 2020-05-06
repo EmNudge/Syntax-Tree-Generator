@@ -5,7 +5,7 @@
   export let depth = 0;
 
   import { treeDepthStore } from '../../stores/data';
-  import { alignTextBottomStore } from '../../stores/preferences';
+  import { alignTextBottomStore, textTrianglesStore } from '../../stores/preferences';
   // needs to be reactive or it won't always be reassesed with new trees.
   $: if (depth > $treeDepthStore)  $treeDepthStore = depth;
 
@@ -68,12 +68,33 @@
           depth={depth + 1} />
       {/each}
     {:else}
-      <line 
-        x1={x + node.size/2} 
-        y1={y + 10} 
-        x2={x + node.size/2} 
-        y2={textPosition - 20} 
-        stroke="black" />
+        {#if $textTrianglesStore && node.sentence.includes(' ')}
+          <line 
+            x1={x + node.size/2} 
+            y1={y + 10}
+            y2={textPosition - 20}
+            x2={x + node.size/2 - node.sentenceSize/2}
+            stroke="black" />
+          <line 
+            x1={x + node.size/2} 
+            y1={y + 10}
+            x2={x + node.size/2 + node.sentenceSize/2}
+            y2={textPosition - 20} 
+            stroke="black" />
+          <line 
+            x1={x + node.size/2 - node.sentenceSize/2} 
+            y1={textPosition - 20}
+            x2={x + node.size/2 + node.sentenceSize/2}
+            y2={textPosition - 20} 
+            stroke="black" />
+        {:else}
+          <line 
+            x1={x + node.size/2} 
+            y1={y + 10} 
+            x2={x + node.size/2} 
+            y2={textPosition - 20} 
+            stroke="black" />
+        {/if}
 
       <text 
         x={x + node.size/2} 

@@ -14,7 +14,6 @@
     if (!result.name) return;
     
     treeDepthStore.set(0);
-    console.log('set to 0')
     addNodeSize(result);
     treeStore.set(result);
   });
