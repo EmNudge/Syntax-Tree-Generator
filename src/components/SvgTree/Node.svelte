@@ -70,8 +70,8 @@
       {#if $textTrianglesStore && node.sentence.text.trim().includes(' ')}
         <polygon points={`
           ${x + node.size/2},${y + 10} 
-          ${x + node.size/2 - node.sentenceSize/2},${textPosition - 20}
-          ${x + node.size/2 + node.sentenceSize/2},${textPosition - 20}
+          ${x + node.size/2 - node.sentence.size/2},${textPosition - 20}
+          ${x + node.size/2 + node.sentence.size/2},${textPosition - 20}
           `} stroke="black" fill="none" />
       {:else}
         <line 

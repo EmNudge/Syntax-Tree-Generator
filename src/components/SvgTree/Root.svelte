@@ -21,6 +21,7 @@
       fill: red;
     }
   </style>
-
-  <Node node={$treeStore} {x} {y} />
+  {#if $treeStore && $treeStore.nameArr}
+    <Node node={$treeStore} {x} {y} />
+  {/if}
 </svg>
