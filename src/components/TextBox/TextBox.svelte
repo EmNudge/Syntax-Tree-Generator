@@ -1,7 +1,7 @@
 <script>
   import { treeStore, treeDepthStore, errTextStore, textStore } from '../../stores/data';
   import parser from '../../parser';
-  import addNodeSize from "../../parser/addNodeSize";
+  import addNodeSize from "../../parser/node-sizer/addNodeSize";
   import SvgTree from "../SvgTree/Root.svelte";
   import handleKeyDown from './handleKeyDown'
 

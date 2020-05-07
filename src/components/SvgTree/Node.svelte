@@ -67,7 +67,7 @@
         depth={depth + 1} />
     {/each}
   {:else}
-      {#if $textTrianglesStore && node.sentence.includes(' ')}
+      {#if $textTrianglesStore && node.sentence.text.trim().includes(' ')}
         <polygon points={`
           ${x + node.size/2},${y + 10} 
           ${x + node.size/2 - node.sentenceSize/2},${textPosition - 20}
@@ -87,6 +87,6 @@
       y={textPosition}
       font="16px sans-serif"
       text-anchor="middle"
-    >{node.sentence}</text>
+    >{node.sentence.text}</text>
   {/if}
 </g>
