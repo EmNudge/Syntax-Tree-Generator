@@ -3,7 +3,7 @@ const PADDING = 20;
 export default function addNodeSize(node) {
   // first lets give the name its length
   let nameLen = 0;
-  for (const [index, name] of node.name.nameArr.entries()) {
+  for (const [index, name] of node.nameArr.entries()) {
     if (index !== 0) nameLen += 2;
     name.offset = nameLen;
     nameLen += getTextSize(name.text, name.type === 'name' ? 16 : 12);

@@ -21,7 +21,7 @@ export const endNode = betweenBrackets(
     const sentence = yield sentenceParser;
 
     return {
-      name,
+      ...name,
       sentence
     };
   })
@@ -46,7 +46,7 @@ export const nodeOfNodes = betweenBrackets(
     );
 
     return {
-      name,
+      ...name,
       nodes
     };
   })

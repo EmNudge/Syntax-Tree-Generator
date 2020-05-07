@@ -8,9 +8,8 @@
   textStore.subscribe(text => {
     const parserResult = parser.run($textStore);
     errTextStore.set(parserResult.error || "");
-    const result = parserResult.result || {};
-    
-    if (!result.name) return;
+    const result = parserResult.result;
+    if (!result) return;
     
     treeDepthStore.set(0);
     addNodeSize(result);

@@ -4,6 +4,7 @@
   import { treeStore, svgStore, treeDepthStore } from "../../stores/data";
 
   $: treeLength = $treeDepthStore;
+  $: console.log($treeStore)
 
   $: x = ($treeStore.size * 1.5 - $treeStore.size) / 2;
   const y = 15;
