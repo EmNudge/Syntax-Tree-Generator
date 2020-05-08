@@ -38,4 +38,21 @@ export const examples = [
 ]
     `.trim()
   },
+  {
+    name: 'Cowboy',
+    text: `
+[Head
+  ["Left Shoulder" ["Left Elbow" Left Hand]]
+  [Neck
+    [Torso
+      [Abdomen
+        ["Left Leg" ["Left Knee" Left Foot]]
+        ["Right Leg" ["Right Knee" Right Foot]]
+      ]
+    ]
+  ]
+  ["Right Shoulder" ["Right Elbow" Right Hand]]
+]
+    `.trim()
+  }
 ]
